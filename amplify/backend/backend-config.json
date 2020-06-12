@@ -1,1 +1,9 @@
-{}
+{
+	"auth": {
+		"twitterclone6c23dcd4": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	}
+}
