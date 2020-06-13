@@ -19,6 +19,7 @@ export const App = () => {
       <div>
         <AmplifySignOut />
         <h1>Hello World!</h1>
+        <h2>Welcome to the Twitter clone</h2>
       </div>
     </AmplifyAuthenticator>
   );
