@@ -1,12 +1,9 @@
 import React from 'react';
 import Amplify from 'aws-amplify';
 import awsconfig from './aws-exports';
-
-import {
-  AmplifySignOut,
-  AmplifyAuthenticator,
-  AmplifySignUp,
-} from '@aws-amplify/ui-react';
+import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { AmplifyAuthenticator, AmplifySignUp } from '@aws-amplify/ui-react';
+import { ThemeProvider, CSSReset } from '@chakra-ui/core';
 import { authFormFields } from './utils/auth';
 import './App.css';
 
@@ -17,9 +14,17 @@ export const App = () => {
     <AmplifyAuthenticator>
       <AmplifySignUp slot='sign-up' formFields={authFormFields} />
       <div>
-        <AmplifySignOut />
-        <h1>Hello World!</h1>
-        <h2>Welcome to the Twitter clone</h2>
+        <ThemeProvider>
+          <CSSReset />
+          <HashRouter>
+            <Switch>
+              <Route exact path='/' component={AllPosts} />
+              <Route exact path='/global-timeline' component={AllPosts} />
+              <Route exact path='/:userId' component={PostsBySpecifiedUser} />
+              <Redirect path='*' to='/' />
+            </Switch>
+          </HashRouter>
+        </ThemeProvider>
       </div>
     </AmplifyAuthenticator>
   );
